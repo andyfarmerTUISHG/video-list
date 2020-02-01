@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Header from "./components/Header";
+import Video from "./components/Video";
+import "./App.css";
 
 function App() {
+  const showIntro = true;
+  let intro;
+  if (showIntro) {
+    intro = <p>Welcome to your custom media manager</p>;
+  } else {
+    intro = null;
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header branding="Video Manager" />
+      {intro}
+      <Video name="Alien" mediaType="DVD" genre="SCI-FI" />
+      <Video name="MIB3" mediaType="Blu-Ray" genre="SCI-FI" />
     </div>
   );
 }
