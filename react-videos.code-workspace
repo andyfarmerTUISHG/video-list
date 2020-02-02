@@ -18,8 +18,8 @@
             "editor.wordWrapColumn": 80
         },
         "emmet.includeLanguages": {
-          "javascriipt": "javascriptreact"
-        },
+          "javascript": "javascriptreact"
+       },
         "emmet.syntaxProfiles": {
           "javascript" : "jsx",
           "javascript" : "html"
