@@ -35,12 +35,7 @@ class Videos extends Component {
     return (
       <div>
         {videos.map(video => (
-          <Video
-            key={video.id}
-            name={video.name}
-            mediaType={video.mediaType}
-            genre={video.genre}
-          />
+          <Video key={video.id} video={video} />
         ))}
       </div>
     );

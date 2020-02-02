@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Video(props) {
-  const { name, mediaType, genre } = props;
+  const { name, mediaType, genre } = props.video;
   return (
     <div className="card card-body mb-3">
       <h2>Name: {name}</h2>
