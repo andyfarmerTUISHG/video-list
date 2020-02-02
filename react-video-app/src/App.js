@@ -15,9 +15,11 @@ function App() {
   return (
     <div className="App">
       <Header branding="Video Manager" />
-      {intro}
-      <Video name="Alien" mediaType="DVD" genre="SCI-FI" />
-      <Video name="MIB3" mediaType="Blu-Ray" genre="SCI-FI" />
+      <div className="container">
+        {intro}
+        <Video name="Alien" mediaType="DVD" genre="SCI-FI" />
+        <Video name="MIB3" mediaType="Blu-Ray" genre="SCI-FI" />
+      </div>
     </div>
   );
 }
