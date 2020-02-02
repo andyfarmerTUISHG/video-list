@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./components/Header";
-import Video from "./components/Video";
+import Videos from "./components/Videos";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
@@ -17,8 +17,7 @@ function App() {
       <Header branding="Video Manager" />
       <div className="container">
         {intro}
-        <Video name="Alien" mediaType="DVD" genre="SCI-FI" />
-        <Video name="MIB3" mediaType="Blu-Ray" genre="SCI-FI" />
+        <Videos />
       </div>
     </div>
   );
