@@ -10,7 +10,10 @@ class Video extends Component {
     this.setState({ showMediaDetails: !this.state.showMediaDetails });
     //update state
   };
-
+  onDeleteClick = (id, e) => {
+    console.log(`delete click - ${id}`);
+    this.props.deleteClickHandler();
+  };
   render() {
     const { id, name, mediaType, genre } = this.props.video;
     const { showMediaDetails } = this.state;
@@ -22,6 +25,12 @@ class Video extends Component {
           <i
             onClick={this.onShowClick.bind(this, id, name)}
             className="fas fa-sort-down"
+            style={{ cursor: "pointer" }}
+          />
+          <i
+            className="fas fa-times"
+            style={{ color: "red", float: "right", cursor: "pointer" }}
+            onClick={this.onDeleteClick.bind(this, id)}
           />
         </h2>
         {showMediaDetails ? (
@@ -36,6 +45,7 @@ class Video extends Component {
 }
 
 Video.propTypes = {
-  video: PropTypes.object.isRequired
+  video: PropTypes.object.isRequired,
+  deleteClickHandler: PropTypes.func.isRequired
 };
 export default Video;
