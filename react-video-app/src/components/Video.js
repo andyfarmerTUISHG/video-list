@@ -2,13 +2,19 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 class Video extends Component {
-  state = {};
+  state = {
+    showMediaDetails: false
+  };
   onShowClick = (id, name, e) => {
     console.log(`in on show clicks ${id} - ${name}`);
+    this.setState({ showMediaDetails: !this.state.showMediaDetails });
+    //update state
   };
 
   render() {
     const { id, name, mediaType, genre } = this.props.video;
+    const { showMediaDetails } = this.state;
+
     return (
       <div className="card card-body mb-3">
         <h2>
@@ -18,10 +24,12 @@ class Video extends Component {
             className="fas fa-sort-down"
           />
         </h2>
-        <ul className="list-group">
-          <li className="list-group-item">Media: {mediaType}</li>
-          <li className="list-group-item">Style: {genre}</li>
-        </ul>
+        {showMediaDetails ? (
+          <ul className="list-group">
+            <li className="list-group-item">Media: {mediaType}</li>
+            <li className="list-group-item">Style: {genre}</li>
+          </ul>
+        ) : null}
       </div>
     );
   }
