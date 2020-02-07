@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 const Context = React.createContext();
 
-// Reducer will take state and an action object.  actionobjet will have a type which will
+// Reducer will take state and an action object.  action object will have a type which will
 // invoke something
 const reducer = (state, action) => {
   switch (action.type) {
