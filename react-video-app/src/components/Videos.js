@@ -3,16 +3,6 @@ import Video from "./Video";
 import { Consumer } from "../context";
 
 class Videos extends Component {
-  deleteClickHandler = id => {
-    console.log(`Videos - delete click handler ${id}`);
-    const { videos } = this.state;
-
-    const newVideos = videos.filter(video => video.id !== id);
-
-    this.setState({
-      videos: newVideos
-    });
-  };
   render() {
     return (
       <Consumer>
@@ -22,14 +12,7 @@ class Videos extends Component {
           return (
             <div>
               {videos.map(video => (
-                <Video
-                  key={video.id}
-                  video={video}
-                  deleteClickHandler={this.deleteClickHandler.bind(
-                    this,
-                    video.id
-                  )}
-                />
+                <Video key={video.id} video={video} />
               ))}
             </div>
           );

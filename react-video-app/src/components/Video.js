@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Consumer } from "../context";
 
 class Video extends Component {
   state = {
@@ -10,42 +11,51 @@ class Video extends Component {
     this.setState({ showMediaDetails: !this.state.showMediaDetails });
     //update state
   };
-  onDeleteClick = (id, e) => {
+  onDeleteClick = (id, dispatch, e) => {
     console.log(`delete click - ${id}`);
-    this.props.deleteClickHandler();
+    dispatch({
+      type: "DELETE_VIDEO",
+      payload: id
+    });
   };
   render() {
     const { id, name, mediaType, genre } = this.props.video;
     const { showMediaDetails } = this.state;
 
     return (
-      <div className="card card-body mb-3">
-        <h2>
-          Name: {name}
-          <i
-            onClick={this.onShowClick.bind(this, id, name)}
-            className="fas fa-sort-down"
-            style={{ cursor: "pointer" }}
-          />
-          <i
-            className="fas fa-times"
-            style={{ color: "red", float: "right", cursor: "pointer" }}
-            onClick={this.onDeleteClick.bind(this, id)}
-          />
-        </h2>
-        {showMediaDetails ? (
-          <ul className="list-group">
-            <li className="list-group-item">Media: {mediaType}</li>
-            <li className="list-group-item">Style: {genre}</li>
-          </ul>
-        ) : null}
-      </div>
+      <Consumer>
+        {value => {
+          const { dispatch } = value;
+          return (
+            <div className="card card-body mb-3">
+              <h2>
+                Name: {name}
+                <i
+                  onClick={this.onShowClick.bind(this, id, name)}
+                  className="fas fa-sort-down"
+                  style={{ cursor: "pointer" }}
+                />
+                <i
+                  className="fas fa-times"
+                  style={{ color: "red", float: "right", cursor: "pointer" }}
+                  onClick={this.onDeleteClick.bind(this, id, dispatch)}
+                />
+              </h2>
+              {showMediaDetails ? (
+                <ul className="list-group">
+                  <li className="list-group-item">Media: {mediaType}</li>
+                  <li className="list-group-item">Style: {genre}</li>
+                </ul>
+              ) : null}
+            </div>
+          );
+        }}
+      </Consumer>
     );
   }
 }
 
 Video.propTypes = {
-  video: PropTypes.object.isRequired,
-  deleteClickHandler: PropTypes.func.isRequired
+  video: PropTypes.object.isRequired
 };
 export default Video;

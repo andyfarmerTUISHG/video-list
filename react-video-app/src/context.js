@@ -2,6 +2,20 @@ import React, { Component } from "react";
 
 const Context = React.createContext();
 
+// Reducer will take state and an action object.  actionobjet will have a type which will
+// invoke something
+const reducer = (state, action) => {
+  switch (action.type) {
+    case "DELETE_VIDEO":
+      return {
+        ...state,
+        videos: state.videos.filter(video => video.id !== action.payload)
+      };
+    default:
+      return state;
+  }
+};
+
 export class Provider extends Component {
   state = {
     videos: [
@@ -29,7 +43,10 @@ export class Provider extends Component {
         genre: "ACTION",
         mediaType: "Blu-Ray"
       }
-    ]
+    ],
+    dispatch: action => {
+      this.setState(state => reducer(state, action));
+    }
   };
 
   render() {
