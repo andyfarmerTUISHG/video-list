@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "./components/Header";
+import Header from "./layout/Header";
 import Videos from "./components/Videos";
 import { Provider } from "./context";
 import "bootstrap/dist/css/bootstrap.min.css";
