@@ -1,38 +1,42 @@
 {
-    "folders": [{
-        "path": "."
-    }],
-    "settings": {
-        //Disable JSHint Lint
-        "jshint.enable": false,
-        // The number of spaces a tab is equal to.
-        "editor.tabSize": 4,
-        // Insert spaces when pressing Tab.
-        "editor.insertSpaces": true,
-        // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
-        "editor.detectIndentation": true,
-        //format on save
-        "editor.formatOnSave": true,
-        "[markdown]": {
-            "editor.wordWrap": "wordWrapColumn",
-            "editor.wordWrapColumn": 80
-        },
-        "emmet.includeLanguages": {
-          "javascript": "javascriptreact"
-       },
-        "emmet.syntaxProfiles": {
-          "javascript" : "jsx",
-          "javascript" : "html"
-        }
-    },
-    "extensions": {
-        "recommendations": [
-          "streetsidesoftware.code-spell-checker",
-          "editorconfig.editorconfig",
-          "dsznajder.es7-react-js-snippets",
-          "dbaeumer.vscode-eslint",
-          "christian-kohler.npm-intellisense",
-          "Orta.vscode-jest",
-          "esbenp.prettier-vscode",
-        ]
+  "folders": [
+    {
+      "path": "."
     }
+  ],
+  "settings": {
+    //Disable JSHint Lint
+    "jshint.enable": false,
+    // The number of spaces a tab is equal to.
+    "editor.tabSize": 4,
+    // Insert spaces when pressing Tab.
+    "editor.insertSpaces": true,
+    // When opening a file, `editor.tabSize` and `editor.insertSpaces` will be detected based on the file contents.
+    "editor.detectIndentation": true,
+    //format on save
+    "editor.formatOnSave": true,
+    "[markdown]": {
+      "editor.wordWrap": "wordWrapColumn",
+      "editor.wordWrapColumn": 80
+    },
+    "emmet.includeLanguages": {
+      "javascript": "javascriptreact"
+    },
+    "emmet.syntaxProfiles": {
+      "javascript": "jsx",
+      "javascript": "html"
+    }
+  },
+  "extensions": {
+    "recommendations": [
+      "streetsidesoftware.code-spell-checker",
+      "editorconfig.editorconfig",
+      "dsznajder.es7-react-js-snippets",
+      "dbaeumer.vscode-eslint",
+      "christian-kohler.npm-intellisense",
+      "Orta.vscode-jest",
+      "esbenp.prettier-vscode",
+      "msjsdiag.debugger-for-chrome"
+    ]
+  }
+}
