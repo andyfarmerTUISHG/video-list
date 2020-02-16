@@ -16,9 +16,13 @@ A small React App that will help with the store of a Video inventory
   - npm install
   - npm start
 
+## Defined a mock API end-point
+
+I have define a [mock endpont](https://my-json-server.typicode.com/andyfarmerTUISHG/video-json) using [My JSON Server](https://my-json-server.typicode.com/)
+
 ## Notes to Self
 
-There are some pre-opionated approaches.
+There are some pre-opinionated approaches.
 
 - Preference on ESlint over JSHint
 - Defined some VSCode Extensions - I forgot why I add them and what - would rather the project reminds and sets it

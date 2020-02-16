@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import axios from "axios";
 const Context = React.createContext();
 
 // Reducer will take state and an action object.  action object will have a type which will
@@ -23,37 +23,23 @@ const reducer = (state, action) => {
 
 export class Provider extends Component {
   state = {
-    videos: [
-      {
-        id: 1,
-        name: "Aliens",
-        genre: "SCI-FI",
-        mediaType: "DVD"
-      },
-      {
-        id: 2,
-        name: "Alien",
-        genre: "SCI-FI",
-        mediaType: "DVD"
-      },
-      {
-        id: 3,
-        name: "Deadpool",
-        genre: "ACTION",
-        mediaType: "Blu-Ray"
-      },
-      {
-        id: 4,
-        name: "Deadpool 2",
-        genre: "ACTION",
-        mediaType: "Blu-Ray"
-      }
-    ],
+    videos: [],
     dispatch: action => {
       this.setState(state => reducer(state, action));
     }
   };
 
+  componentDidMount() {
+    axios
+      .get(
+        "https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos"
+      )
+      .then(res =>
+        this.setState({
+          videos: res.data
+        })
+      );
+  }
   render() {
     return (
       <Context.Provider value={this.state}>
