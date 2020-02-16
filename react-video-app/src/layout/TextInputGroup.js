@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 
 const TextInputGroup = ({
   label,
@@ -16,12 +17,14 @@ const TextInputGroup = ({
       <input
         name={name}
         type={type}
-        className="is-invalid form-control form-control-lg"
+        className={classnames("form-control form-control-lg", {
+          "is-invalid": error
+        })}
         placeholder={placeholder}
         value={value}
         onChange={onChange}
       />
-      <div className="invalid-feedback">This is wrong</div>
+      {error && <div className="invalid-feedback">{error}</div>}
     </div>
   );
 };

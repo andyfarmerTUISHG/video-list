@@ -23,12 +23,15 @@ export default class AddVideo extends Component {
     //Check for errors
     if (name === "") {
       this.setState({ errors: { name: "Name is required" } });
+      return;
     }
     if (genre === "") {
       this.setState({ errors: { genre: "Genre is required" } });
+      return;
     }
     if (mediaType === "") {
       this.setState({ errors: { mediaType: "Media Type is required" } });
+      return;
     }
 
     const newVideo = {
