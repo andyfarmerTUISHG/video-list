@@ -52,6 +52,9 @@ export default class AddVideo extends Component {
       mediaType: "",
       errors: {}
     });
+
+    //Redirect to home page
+    this.props.history.push("/");
   };
   render() {
     const { name, genre, mediaType, errors } = this.state;
