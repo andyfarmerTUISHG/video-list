@@ -11,6 +11,11 @@ const reducer = (state, action) => {
         ...state,
         videos: state.videos.filter(video => video.id !== action.payload)
       };
+    case "ADD_VIDEO":
+      return {
+        ...state,
+        videos: [action.payload, ...state.videos]
+      };
     default:
       return state;
   }
