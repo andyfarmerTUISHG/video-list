@@ -8,6 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AddVideo from "./components/AddVideo";
 import NotFound from "./pages/NotFound";
+import Test from "./components/test/Test";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route exact path="/" component={Index} />
               <Route exact path="/video/add" component={AddVideo} />
               <Route exact path="/about" component={About} />
+              <Route exact path="/test" component={Test} />
               {/* Not Found Route */}
               <Route component={NotFound} />
             </Switch>
