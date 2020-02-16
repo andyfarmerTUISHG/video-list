@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Consumer } from "../context";
-import uuid from "uuid";
 import TextInputGroup from "../layout/TextInputGroup";
+import Axios from "axios";
 
 export default class AddVideo extends Component {
   state = {
@@ -35,26 +35,30 @@ export default class AddVideo extends Component {
     }
 
     const newVideo = {
-      id: uuid(),
       name,
       genre,
       mediaType
     };
-    dispatch({
-      type: "ADD_VIDEO",
-      payload: newVideo
-    });
 
-    //clear web form with new state object
-    this.setState({
-      name: "",
-      genre: "",
-      mediaType: "",
-      errors: {}
+    Axios.post(
+      "https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos",
+      newVideo
+    ).then(res => {
+      console.log(`we got a response ${JSON.stringify(res)}`);
+      dispatch({
+        type: "ADD_VIDEO",
+        payload: res.data
+      });
+      //clear web form with new state object
+      this.setState({
+        name: "",
+        genre: "",
+        mediaType: "",
+        errors: {}
+      });
+      //Redirect to home page
+      this.props.history.push("/");
     });
-
-    //Redirect to home page
-    this.props.history.push("/");
   };
   render() {
     const { name, genre, mediaType, errors } = this.state;
