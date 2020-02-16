@@ -27,7 +27,7 @@ function Header(props) {
           </li>
           <li className="nav-item">
             <Link to="/about" className="nav-link">
-              <i class="fas fa-question-circle" />
+              <i className="fas fa-question-circle" />
               About
             </Link>
           </li>
