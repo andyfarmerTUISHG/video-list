@@ -33,17 +33,47 @@ export default class EditVideo extends Component {
   onSubmit = async (dispatch, e) => {
     e.preventDefault();
     const { name, genre, mediaType } = this.state;
+    console.log(`in edit  submit - ${JSON.stringify(this.state)}`);
+    //Check for errors
+    if (name === "") {
+      this.setState({ errors: { name: "Name is required" } });
+      return;
+    }
+    if (genre === "") {
+      this.setState({ errors: { genre: "Genre is required" } });
+      return;
+    }
+    if (mediaType === "") {
+      this.setState({ errors: { mediaType: "Media Type is required" } });
+      return;
+    }
 
-    dispatch({
-      type: "ADD_VIDEO"
-      // payload: res.data
-    });
+    //Create new object to send via AXIOS
+    const updatedVideo = {
+      name,
+      genre,
+      mediaType
+    };
     //clear web form with new state object
     this.setState({
       name: "",
       genre: "",
       mediaType: "",
       errors: {}
+    });
+
+    const { id } = this.props.match.params;
+
+    const res = await Axios.put(
+      `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`,
+      updatedVideo
+    );
+
+    console.log(JSON.stringify(res));
+
+    dispatch({
+      type: "EDIT_VIDEO",
+      payload: res.data
     });
     //Redirect to home page
     this.props.history.push("/");

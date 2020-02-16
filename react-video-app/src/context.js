@@ -16,6 +16,15 @@ const reducer = (state, action) => {
         ...state,
         videos: [action.payload, ...state.videos]
       };
+    case "EDIT_VIDEO":
+      console.log(`EDIT Video Dispatch`);
+
+      return {
+        ...state,
+        videos: state.videos.map(video =>
+          video.id === action.payload.id ? (video = action.payload) : video
+        )
+      };
     default:
       return state;
   }
