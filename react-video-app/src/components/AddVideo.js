@@ -16,7 +16,7 @@ export default class AddVideo extends Component {
       [e.target.name]: e.target.value
     });
 
-  onSubmit = (dispatch, e) => {
+  onSubmit = async (dispatch, e) => {
     e.preventDefault();
     const { name, genre, mediaType } = this.state;
 
@@ -40,25 +40,25 @@ export default class AddVideo extends Component {
       mediaType
     };
 
-    Axios.post(
+    const res = await Axios.post(
       "https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos",
       newVideo
-    ).then(res => {
-      console.log(`we got a response ${JSON.stringify(res)}`);
-      dispatch({
-        type: "ADD_VIDEO",
-        payload: res.data
-      });
-      //clear web form with new state object
-      this.setState({
-        name: "",
-        genre: "",
-        mediaType: "",
-        errors: {}
-      });
-      //Redirect to home page
-      this.props.history.push("/");
+    );
+
+    console.log(`we got a response ${JSON.stringify(res)}`);
+    dispatch({
+      type: "ADD_VIDEO",
+      payload: res.data
     });
+    //clear web form with new state object
+    this.setState({
+      name: "",
+      genre: "",
+      mediaType: "",
+      errors: {}
+    });
+    //Redirect to home page
+    this.props.history.push("/");
   };
   render() {
     const { name, genre, mediaType, errors } = this.state;

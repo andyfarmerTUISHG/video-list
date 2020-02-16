@@ -14,10 +14,11 @@ class Video extends Component {
   };
   onDeleteClick = async (id, dispatch, e) => {
     console.log(`delete click - ${id}`);
-
-    await Axios.delete(
-      `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`
-    );
+    try {
+      await Axios.delete(
+        `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`
+      );
+    } catch (error) {}
 
     dispatch({
       type: "DELETE_VIDEO",
