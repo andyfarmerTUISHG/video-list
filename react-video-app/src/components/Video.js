@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Consumer } from "../context";
+import Axios from "axios";
 
 class Video extends Component {
   state = {
@@ -13,11 +14,18 @@ class Video extends Component {
   };
   onDeleteClick = (id, dispatch, e) => {
     console.log(`delete click - ${id}`);
-    dispatch({
-      type: "DELETE_VIDEO",
-      payload: id
+
+    Axios.delete(
+      `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`
+    ).then(res => {
+      console.log(`got a res - ${JSON.stringify(res)}`);
+      dispatch({
+        type: "DELETE_VIDEO",
+        payload: id
+      });
     });
   };
+
   render() {
     const { id, name, mediaType, genre } = this.props.video;
     const { showMediaDetails } = this.state;
