@@ -7,7 +7,8 @@ export default class AddVideo extends Component {
   state = {
     name: "",
     genre: "",
-    mediaType: ""
+    mediaType: "",
+    errors: {}
   };
 
   onChange = e =>
@@ -18,6 +19,17 @@ export default class AddVideo extends Component {
   onSubmit = (dispatch, e) => {
     e.preventDefault();
     const { name, genre, mediaType } = this.state;
+
+    //Check for errors
+    if (name === "") {
+      this.setState({ errors: { name: "Name is required" } });
+    }
+    if (genre === "") {
+      this.setState({ errors: { genre: "Genre is required" } });
+    }
+    if (mediaType === "") {
+      this.setState({ errors: { mediaType: "Media Type is required" } });
+    }
 
     const newVideo = {
       id: uuid(),
@@ -34,11 +46,12 @@ export default class AddVideo extends Component {
     this.setState({
       name: "",
       genre: "",
-      mediaType: ""
+      mediaType: "",
+      errors: {}
     });
   };
   render() {
-    const { name, genre, mediaType } = this.state;
+    const { name, genre, mediaType, errors } = this.state;
 
     return (
       <Consumer>
@@ -55,6 +68,7 @@ export default class AddVideo extends Component {
                     placeholder="Enter Name..."
                     value={name}
                     onChange={this.onChange}
+                    error={errors.name}
                   />
                   <TextInputGroup
                     name="genre"
@@ -63,6 +77,7 @@ export default class AddVideo extends Component {
                     placeholder="Enter Genre..."
                     value={genre}
                     onChange={this.onChange}
+                    error={errors.genre}
                   />
                   <TextInputGroup
                     name="mediaType"
@@ -72,6 +87,7 @@ export default class AddVideo extends Component {
                     placeholder="Enter Media Type..."
                     value={mediaType}
                     onChange={this.onChange}
+                    error={errors.mediaType}
                   />
                   <input
                     type="submit"
