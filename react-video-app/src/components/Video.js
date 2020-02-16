@@ -12,17 +12,16 @@ class Video extends Component {
     this.setState({ showMediaDetails: !this.state.showMediaDetails });
     //update state
   };
-  onDeleteClick = (id, dispatch, e) => {
+  onDeleteClick = async (id, dispatch, e) => {
     console.log(`delete click - ${id}`);
 
-    Axios.delete(
+    await Axios.delete(
       `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`
-    ).then(res => {
-      console.log(`got a res - ${JSON.stringify(res)}`);
-      dispatch({
-        type: "DELETE_VIDEO",
-        payload: id
-      });
+    );
+
+    dispatch({
+      type: "DELETE_VIDEO",
+      payload: id
     });
   };
 
