@@ -29,16 +29,13 @@ export class Provider extends Component {
     }
   };
 
-  componentDidMount() {
-    axios
-      .get(
-        "https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos"
-      )
-      .then(res =>
-        this.setState({
-          videos: res.data
-        })
-      );
+  async componentDidMount() {
+    const res = await axios.get(
+      "https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos"
+    );
+    this.setState({
+      videos: res.data
+    });
   }
   render() {
     return (
