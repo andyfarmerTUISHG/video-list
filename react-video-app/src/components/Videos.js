@@ -10,11 +10,14 @@ class Videos extends Component {
           // Access to whatever the provider gives us, in this case, the whole state
           const { videos } = value;
           return (
-            <div>
+            <React.Fragment>
+              <h2 className="display-4 mb-2">
+                <span className="text-danger">Video</span>List
+              </h2>
               {videos.map(video => (
                 <Video key={video.id} video={video} />
               ))}
-            </div>
+            </React.Fragment>
           );
         }}
       </Consumer>
