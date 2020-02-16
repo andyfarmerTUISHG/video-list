@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Consumer } from "../context";
 import Axios from "axios";
-
+import { Link } from "react-router-dom";
 class Video extends Component {
   state = {
     showMediaDetails: false
@@ -48,6 +48,18 @@ class Video extends Component {
                   style={{ color: "red", float: "right", cursor: "pointer" }}
                   onClick={this.onDeleteClick.bind(this, id, dispatch)}
                 />
+                <Link
+                  to={`/video/edit/${id}`}
+                  className="nav-link"
+                  style={{
+                    color: "black",
+                    float: "right",
+                    cursor: "pointer",
+                    marginRight: "1rem"
+                  }}
+                >
+                  <i className="fas fa-pencil-alt" />
+                </Link>
               </h2>
               {showMediaDetails ? (
                 <ul className="list-group">

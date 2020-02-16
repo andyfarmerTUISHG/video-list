@@ -9,6 +9,7 @@ import "./App.css";
 import AddVideo from "./components/AddVideo";
 import NotFound from "./pages/NotFound";
 import Test from "./components/test/Test";
+import EditVideo from "./components/EditVIdeo";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Switch>
               <Route exact path="/" component={Index} />
               <Route exact path="/video/add" component={AddVideo} />
+              <Route exact path="/video/edit/:id" component={EditVideo} />
               <Route exact path="/about" component={About} />
               <Route exact path="/test" component={Test} />
               {/* Not Found Route */}
