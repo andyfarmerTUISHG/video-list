@@ -1,10 +1,8 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./layout/Header";
 import Index from "./pages/Index";
 import About from "./pages/About";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 import AddVideo from "./components/AddVideo";
 import NotFound from "./pages/NotFound";
 import Test from "./components/test/Test";
@@ -12,6 +10,9 @@ import EditVideo from "./components/EditVIdeo";
 
 import { Provider } from "react-redux";
 import store from "./store";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
 function App() {
   return (

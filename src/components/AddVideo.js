@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Consumer } from "../context";
 import TextInputGroup from "../layout/TextInputGroup";
 import Axios from "axios";
 
@@ -64,7 +63,7 @@ export default class AddVideo extends Component {
     const { name, genre, mediaType, errors } = this.state;
 
     return (
-      <Consumer>
+      <>
         {value => {
           const { dispatch } = value;
           return (
@@ -109,7 +108,7 @@ export default class AddVideo extends Component {
             </div>
           );
         }}
-      </Consumer>
+      </>
     );
   }
 }
