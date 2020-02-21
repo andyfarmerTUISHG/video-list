@@ -2,6 +2,7 @@
   "name": "react-video-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://andyfarmertuishg.github.io/video-list/",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
@@ -14,7 +15,12 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0"
   },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
