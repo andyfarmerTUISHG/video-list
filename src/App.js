@@ -3,7 +3,6 @@ import Header from "./layout/Header";
 import Index from "./pages/Index";
 import About from "./pages/About";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Provider } from "./context";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AddVideo from "./components/AddVideo";
@@ -11,9 +10,12 @@ import NotFound from "./pages/NotFound";
 import Test from "./components/test/Test";
 import EditVideo from "./components/EditVIdeo";
 
+import { Provider } from "react-redux";
+import store from "./store";
+
 function App() {
   return (
-    <Provider>
+    <Provider store={store}>
       <Router>
         <div className="App">
           <Header branding="Video Manager" />
