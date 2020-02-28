@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Video from "./Video";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { GET_VIDEOS } from "../actions/types";
+import { getVideos } from "../actions/videosActions";
 
 class Videos extends Component {
   componentDidMount() {
@@ -33,11 +33,4 @@ const mapStateToProps = state => ({
   videos: state.video.videos
 });
 
-const mapDispatchToProps = dispatch => ({
-  getVideos: () =>
-    dispatch({
-      type: GET_VIDEOS
-    })
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Videos);
+export default connect(mapStateToProps, { getVideos })(Videos);
