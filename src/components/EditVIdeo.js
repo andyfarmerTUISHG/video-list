@@ -29,7 +29,7 @@ export default class EditVideo extends Component {
       [e.target.name]: e.target.value
     });
 
-  onSubmit = async (dispatch, e) => {
+  onSubmit = async e => {
     e.preventDefault();
     const { name, genre, mediaType } = this.state;
     console.log(`in edit  submit - ${JSON.stringify(this.state)}`);
@@ -70,10 +70,6 @@ export default class EditVideo extends Component {
 
     console.log(JSON.stringify(res));
 
-    dispatch({
-      type: "EDIT_VIDEO",
-      payload: res.data
-    });
     //Redirect to home page
     this.props.history.push("/");
   };
@@ -82,52 +78,45 @@ export default class EditVideo extends Component {
     const { name, genre, mediaType, errors } = this.state;
 
     return (
-      <>
-        {value => {
-          const { dispatch } = value;
-          return (
-            <div className="card mb-3">
-              <div className="card-header">Edit Video</div>
-              <div className="card-body">
-                <form onSubmit={this.onSubmit.bind(this, dispatch)}>
-                  <TextInputGroup
-                    label="Name"
-                    name="name"
-                    placeholder="Enter Name..."
-                    value={name}
-                    onChange={this.onChange}
-                    error={errors.name}
-                  />
-                  <TextInputGroup
-                    name="genre"
-                    label="Genre:"
-                    type="text"
-                    placeholder="Enter Genre..."
-                    value={genre}
-                    onChange={this.onChange}
-                    error={errors.genre}
-                  />
-                  <TextInputGroup
-                    name="mediaType"
-                    label="Media Type:"
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="Enter Media Type..."
-                    value={mediaType}
-                    onChange={this.onChange}
-                    error={errors.mediaType}
-                  />
-                  <input
-                    type="submit"
-                    value="Edit Video"
-                    className="btn btn-light btn-block"
-                  />
-                </form>
-              </div>
-            </div>
-          );
-        }}
-      </>
+      <div className="card mb-3">
+        <div className="card-header">Edit Video</div>
+        <div className="card-body">
+          <form onSubmit={this.onSubmit.bind(this)}>
+            <TextInputGroup
+              label="Name"
+              name="name"
+              placeholder="Enter Name..."
+              value={name}
+              onChange={this.onChange}
+              error={errors.name}
+            />
+            <TextInputGroup
+              name="genre"
+              label="Genre:"
+              type="text"
+              placeholder="Enter Genre..."
+              value={genre}
+              onChange={this.onChange}
+              error={errors.genre}
+            />
+            <TextInputGroup
+              name="mediaType"
+              label="Media Type:"
+              type="text"
+              className="form-control form-control-lg"
+              placeholder="Enter Media Type..."
+              value={mediaType}
+              onChange={this.onChange}
+              error={errors.mediaType}
+            />
+            <input
+              type="submit"
+              value="Edit Video"
+              className="btn btn-light btn-block"
+            />
+          </form>
+        </div>
+      </div>
     );
   }
 }

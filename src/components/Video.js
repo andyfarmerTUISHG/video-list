@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Axios from "axios";
 import { Link } from "react-router-dom";
+import { deleteVideo } from "../actions/videosActions";
+import { connect } from "react-redux";
 class Video extends Component {
   state = {
     showMediaDetails: false
@@ -11,18 +13,15 @@ class Video extends Component {
     this.setState({ showMediaDetails: !this.state.showMediaDetails });
     //update state
   };
-  onDeleteClick = async (id, dispatch, e) => {
+  onDeleteClick = (id, e) => {
     console.log(`delete click - ${id}`);
-    try {
-      await Axios.delete(
-        `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`
-      );
-    } catch (error) {}
+    // try {
+    //   Axios.delete(
+    //     `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`
+    //   );
+    // } catch (error) {}
 
-    dispatch({
-      type: "DELETE_VIDEO",
-      payload: id
-    });
+    this.props.deleteVideo(id);
   };
 
   render() {
@@ -68,6 +67,7 @@ class Video extends Component {
 }
 
 Video.propTypes = {
-  video: PropTypes.object.isRequired
+  video: PropTypes.object.isRequired,
+  deleteVideo: PropTypes.func.isRequired
 };
-export default Video;
+export default connect(null, { deleteVideo })(Video);

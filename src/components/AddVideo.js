@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import TextInputGroup from "../layout/TextInputGroup";
 import Axios from "axios";
+import { addVideo } from "../actions/videosActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import uuid from "uuid";
 
-export default class AddVideo extends Component {
+class AddVideo extends Component {
   state = {
     name: "",
     genre: "",
@@ -15,7 +19,7 @@ export default class AddVideo extends Component {
       [e.target.name]: e.target.value
     });
 
-  onSubmit = async (dispatch, e) => {
+  onSubmit = e => {
     e.preventDefault();
     const { name, genre, mediaType } = this.state;
 
@@ -34,21 +38,23 @@ export default class AddVideo extends Component {
     }
 
     const newVideo = {
+      id: uuid(),
       name,
       genre,
       mediaType
     };
 
-    const res = await Axios.post(
-      "https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos",
-      newVideo
-    );
+    this.props.addVideo(newVideo);
+    // const res = await Axios.post(
+    //   "https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos",
+    //   newVideo
+    // );
 
-    console.log(`we got a response ${JSON.stringify(res)}`);
-    dispatch({
-      type: "ADD_VIDEO",
-      payload: res.data
-    });
+    // console.log(`we got a response ${JSON.stringify(res)}`);
+    // dispatch({
+    //   type: "ADD_VIDEO",
+    //   payload: res.data
+    // });
     //clear web form with new state object
     this.setState({
       name: "",
@@ -63,52 +69,51 @@ export default class AddVideo extends Component {
     const { name, genre, mediaType, errors } = this.state;
 
     return (
-      <>
-        {value => {
-          const { dispatch } = value;
-          return (
-            <div className="card mb-3">
-              <div className="card-header">Add Video</div>
-              <div className="card-body">
-                <form onSubmit={this.onSubmit.bind(this, dispatch)}>
-                  <TextInputGroup
-                    label="Name"
-                    name="name"
-                    placeholder="Enter Name..."
-                    value={name}
-                    onChange={this.onChange}
-                    error={errors.name}
-                  />
-                  <TextInputGroup
-                    name="genre"
-                    label="Genre:"
-                    type="text"
-                    placeholder="Enter Genre..."
-                    value={genre}
-                    onChange={this.onChange}
-                    error={errors.genre}
-                  />
-                  <TextInputGroup
-                    name="mediaType"
-                    label="Media Type:"
-                    type="text"
-                    className="form-control form-control-lg"
-                    placeholder="Enter Media Type..."
-                    value={mediaType}
-                    onChange={this.onChange}
-                    error={errors.mediaType}
-                  />
-                  <input
-                    type="submit"
-                    value="Add Video"
-                    className="btn btn-light btn-block"
-                  />
-                </form>
-              </div>
-            </div>
-          );
-        }}
-      </>
+      <div className="card mb-3">
+        <div className="card-header">Add Video</div>
+        <div className="card-body">
+          <form onSubmit={this.onSubmit.bind(this)}>
+            <TextInputGroup
+              label="Name"
+              name="name"
+              placeholder="Enter Name..."
+              value={name}
+              onChange={this.onChange}
+              error={errors.name}
+            />
+            <TextInputGroup
+              name="genre"
+              label="Genre:"
+              type="text"
+              placeholder="Enter Genre..."
+              value={genre}
+              onChange={this.onChange}
+              error={errors.genre}
+            />
+            <TextInputGroup
+              name="mediaType"
+              label="Media Type:"
+              type="text"
+              className="form-control form-control-lg"
+              placeholder="Enter Media Type..."
+              value={mediaType}
+              onChange={this.onChange}
+              error={errors.mediaType}
+            />
+            <input
+              type="submit"
+              value="Add Video"
+              className="btn btn-light btn-block"
+            />
+          </form>
+        </div>
+      </div>
     );
   }
 }
+
+AddVideo.propTypes = {
+  addVideo: PropTypes.func.isRequired
+};
+
+export default connect(null, { addVideo })(AddVideo);
