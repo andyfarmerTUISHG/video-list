@@ -4,7 +4,6 @@ import Axios from "axios";
 import { addVideo } from "../actions/videosActions";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import uuid from "uuid";
 
 class AddVideo extends Component {
   state = {
@@ -38,7 +37,6 @@ class AddVideo extends Component {
     }
 
     const newVideo = {
-      id: uuid(),
       name,
       genre,
       mediaType

@@ -1,8 +1,11 @@
 import React, { Component } from "react";
 import TextInputGroup from "../layout/TextInputGroup";
 import Axios from "axios";
+import { connect } from "react-redux";
+import { getVideo, editVideo } from "../actions/videosActions";
+import PropTypes from "prop-types";
 
-export default class EditVideo extends Component {
+class EditVideo extends Component {
   state = {
     name: "",
     genre: "",
@@ -10,18 +13,20 @@ export default class EditVideo extends Component {
     errors: {}
   };
 
-  async componentDidMount() {
-    const { id } = this.props.match.params;
-    const res = await Axios.get(
-      `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`
-    );
-
-    const { name, genre, mediaType } = res.data;
+  componentWillReceiveProps(nextProps, nextState) {
+    const { name, genre, mediaType } = nextProps.video;
     this.setState({
       name,
       genre,
       mediaType
     });
+  }
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    //   const res = await Axios.get(
+    //     `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`
+    //   );
+    this.props.getVideo(id);
   }
 
   onChange = e =>
@@ -47,8 +52,10 @@ export default class EditVideo extends Component {
       return;
     }
 
+    const { id } = this.props.match.params;
     //Create new object to send via AXIOS
     const updatedVideo = {
+      id,
       name,
       genre,
       mediaType
@@ -61,14 +68,11 @@ export default class EditVideo extends Component {
       errors: {}
     });
 
-    const { id } = this.props.match.params;
-
-    const res = await Axios.put(
-      `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`,
-      updatedVideo
-    );
-
-    console.log(JSON.stringify(res));
+    this.props.editVideo(updatedVideo);
+    // const res = await Axios.put(
+    //   `https://my-json-server.typicode.com/andyfarmerTUISHG/video-json/videos/${id}`,
+    //   updatedVideo
+    // );
 
     //Redirect to home page
     this.props.history.push("/");
@@ -120,3 +124,14 @@ export default class EditVideo extends Component {
     );
   }
 }
+
+EditVideo.propTypes = {
+  getVideo: PropTypes.func.isRequired,
+  video: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  video: state.video.video
+});
+
+export default connect(mapStateToProps, { getVideo, editVideo })(EditVideo);
